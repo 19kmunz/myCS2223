@@ -36,6 +36,10 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
 			}
 		}
 
+		if(high == -1){
+			return null;
+		}
+
 		int r = high;
 		low = 0;
 		high = r;
@@ -48,7 +52,7 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
 			} else if (rc > 0) {
 				high = mid-1;
 			} else {
-				return new int[] {mid,0};
+				return new int[] {r,mid};
 			}
 		}
 		return null; // not found

@@ -18,8 +18,43 @@ public class DiagonalArraySolution extends DiagonalArraySearch {
 	 */
 	@Override
 	public int[] locate(int target) {
-		// FIX ME: complete this method.
-		return null;
+		int n = this.length();
+		int low = 0;
+		int high = n-1;
+
+		while (low <= high) {
+			int mid = (low+high)/2;
+
+			int rc = inspect(mid, 0) - target;
+			if (rc < 0) {
+				low = mid+1;
+			} else if (rc > 0) {
+				high = mid-1;
+			} else {
+				return new int[] {mid,0};
+			}
+		}
+
+		if(high == -1){
+			return null;
+		}
+
+		int r = high;
+		low = 0;
+		high = n - r - 1;
+		while (low <= high) {
+			int mid = (low+high)/2;
+
+			int rc = inspect(mid + r, mid) - target;
+			if (rc < 0) {
+				low = mid+1;
+			} else if (rc > 0) {
+				high = mid-1;
+			} else {
+				return new int[] {mid + r,mid};
+			}
+		}
+		return null; // not found
 	}
 	
 	/** Be sure that you call your class constructor. Do not modify this method. */ 

@@ -41,7 +41,7 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
 		}
 
 		int r = high;
-		low = 0;
+		low = 1;
 		high = r;
 		while (low <= high) {
 			int mid = (low+high)/2;

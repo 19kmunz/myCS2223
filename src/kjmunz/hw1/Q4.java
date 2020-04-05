@@ -31,10 +31,13 @@ public class Q4 {
 		long result = 0;
 		while (!stack.isEmpty()) { 
 			long val = stack.pop();
-			
-			// YOU HAVE WORK TO DO HERE...
+			if(val == 0 || val == 1){
+				result++;
+			} else {
+				stack.push(val - 1);
+				stack.push(val - 2);
+			}
 		}
-		
 		return result;
 	}
 	
@@ -52,6 +55,12 @@ public class Q4 {
 		while (!stack.isEmpty()) { 
 			long a = stack.pop();
 			long b = stack.pop();
+			if(b == 0){
+				return a;
+			} else {
+				stack.push(b);
+				stack.push(a % b);
+			}
 			
 			// YOU HAVE WORK TO DO HERE...
 		}
@@ -111,7 +120,7 @@ public class Q4 {
 			System.out.println(String.format("%2d\t%12d\t%f", n, val, minTime));
 		}
 	}
-	
+
 	/**
 	 * Run 1000 trials to confirm your gcd implementation matches reference implementation.
 	 */
@@ -119,16 +128,19 @@ public class Q4 {
 		for (long n = 1; n < 1000; n++) {
 			long a = (long) (Math.pow(2, 32) * Math.random());
 			long b = (long) (Math.pow(2, 32) * Math.random());
-			
+
 			// push in reverse order so the receiving function will first pop off A and then B
 			FixedCapacityStack<Long> stack = new FixedCapacityStack<>(60);
 			stack.push(b);
 			stack.push(a);
-			
+
 			long g = gcd(stack);    // this is your implementation
 			long g2 = gcd(a, b);    // this is reference implementation
 			if (g != g2) {
 				System.err.println(String.format("Your result of %d doesn't match %d", g, g2));
+			} else {
+				// Thanks to Aditya Kumar for patching this defect.
+				System.out.println(String.format("%2d\t%12d\t%d", a, b, g));
 			}
 		}
 	}

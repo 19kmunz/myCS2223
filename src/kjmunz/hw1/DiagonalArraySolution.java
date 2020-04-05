@@ -40,7 +40,7 @@ public class DiagonalArraySolution extends DiagonalArraySearch {
 		}
 
 		int r = high;
-		low = 0;
+		low = 1;
 		high = n - r - 1;
 		while (low <= high) {
 			int mid = (low+high)/2;

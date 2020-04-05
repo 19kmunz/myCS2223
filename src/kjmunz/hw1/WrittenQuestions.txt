@@ -28,9 +28,12 @@ Q1. Stack Experiments
     (c) Vals Stack: [2.0, 5.0]
 
 Q3.1 Function f(n) that models # of array inspections for UnknownArraySolution
+(   (2*(n-2)^2 + 9*(n-2) + 8)   *   (((n-1*) * n * (n+1))/2)  ) /4
+or (a(n-2)*t(n))/4 where a(n) = 2*n^2 + 9*n +  and t(n) = ((n-1)*n*(n+1))/2
 
-Q3.2 Function g(n) that models # of array inspections for ImprovedUnknownArraySolution 
-
+Q3.2 Function g(n) that models # of array inspections for ImprovedUnknownArraySolution
+((   (2*(n-2)^2 + 9*(n-2) + 8)   *   (((n-1*) * n * (n+1))/2)  ) /4) + ((n-3)*(n+1)*(-n))/2
+or f(x) + b(x) where f(x) is the function from 3.1 and b(x) = ((n-3)*(n+1)*(-n))/2
 Bonus Questions
 ---------------
 Q1.8  
@@ -39,7 +42,7 @@ Q2.1.1
 
 Q2.2.1 
 
-Q2.3.1 - Done 8144
+Q2.3.1 - Done: 8144
 
 Q2.3.2 - A[2 * floor((n-1)/3) - 1][floor((n-1)/3)-1] unless (n - 1) % 3 == 0 then it is A[2 * floor((n-1)/3) - 2][floor((n-1)/3)-1]
 

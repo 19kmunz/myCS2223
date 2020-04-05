@@ -10,13 +10,20 @@ import algs.hw1.arraysolution.UnknownArraySolution;
 public class Q3 {
 	
 	static long f(int n) {
-		// YOUR computation here
-		return 0;
+		return (a(n-2)*t(n))/4;
 	}
-	
+	static long a(int n){
+		return 2*n*n + 9*n + 8;
+	}
+	static long t(int n){
+		return ((n-1)*n*(n+1))/2;
+	}
+
+	static long b(int n){
+		return ((n-3)*(n+1)*(-n))/2;
+	}
 	static long g(int n) {
-		// YOUR computation here
-		return 0;
+		return f(n)+b(n);
 	}
 	
 	public static void main(String[] args) {

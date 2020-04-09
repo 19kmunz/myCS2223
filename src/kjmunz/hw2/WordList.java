@@ -20,8 +20,8 @@ public class WordList {
 		}
 	}
 
-	Node first = null;
-	Node last = null;
+	private Node first = null;
+	private Node last = null;
 	int size = 0;
 
 	/**

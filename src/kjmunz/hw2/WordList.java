@@ -20,6 +20,10 @@ public class WordList {
 		}
 	}
 
+	Node first = null;
+	Node last = null;
+	int size = 0;
+
 	/**
 	 * If the given element doesn't exist in the set then update 
 	 * the set and return true; otherwise return false. This means that
@@ -28,14 +32,24 @@ public class WordList {
 	 * @param elt      element to be added.
 	 */
 	public boolean add(String elt) {
-		// TODO
+		if(!this.contains(elt)) {
+			if (first == null) {
+				first = new Node(elt);
+				last = first;
+				size = 1;
+			} else {
+				last.next = new Node(elt);
+				last = last.next;
+				size++;
+			}
+			return true;
+		}
 		return false;
 	}
 
 	/** Returns the number of elements in the set. */ 
 	public int size() {
-		// TODO
-		return -1;
+		return size;
 	}
 
 	/**
@@ -44,7 +58,29 @@ public class WordList {
 	 * @param elt      element to be removed.
 	 */
 	public boolean remove (String elt) {
-		// TODO
+		if(first != null && contains(elt)) {
+			if (first == last) { // since it is first == last, it must be size 1, and since it IS contained, it MUST be the one element
+				first = null;
+				last = null;
+				size = 0;
+			} else if (first.word.equals(elt)){
+				first = first.next;
+				size--;
+			} else {
+				Node currNode = first.next;
+				Node prevNode = first;
+				while(currNode.next != null){
+					if(currNode.word.equals(elt)){
+						break;
+					}
+					prevNode = currNode;
+					currNode = currNode.next;
+				}
+				prevNode.next = currNode.next;
+				size--;
+			}
+			return true;
+		}
 		return false;
 	}
 
@@ -53,14 +89,32 @@ public class WordList {
 	 * @param elt      target element to be searched.
 	 */
 	public boolean contains(String elt) {
-		// TODO
-		return false;
+		Node currNode = first;
+		if(size() == 0){
+			return false;
+		}
+		while(currNode.next != null){
+			if(currNode.word.equals(elt)){
+				return true;
+			}
+			currNode=currNode.next;
+		}
+		return currNode.word.equals(elt);
 	}
 
 	/** For debugging, return comma-separated string of elements. */
 	public String elements() {
-		// TODO
-		return "";
+		StringBuilder elements = new StringBuilder();
+		if(size() == 0){
+			return "";
+		}
+		Node currNode = first;
+		while(currNode.next != null){
+			elements.append(currNode.word).append(", ");
+			currNode = currNode.next;
+		}
+		elements.append(currNode.word);
+		return elements.toString();
 	}
 
 	// you should not have to modify anything below. These are testing routines for you to check your work.

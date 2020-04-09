@@ -1,5 +1,8 @@
 package kjmunz.hw2;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * For this question, you are to process the book "The Tale of Two Cities" as included in the repository.   
  * 
@@ -24,9 +27,21 @@ public class Q1 {
 	
 	/** Complete this implementation. */
 	static void largestChapter() throws java.io.IOException {
-		int chapter = -1;
-		int max = -1;
-	
+		int chapter = 1;
+		int max = 0;
+		int currentChMax = 0;
+		for(int ch = 1; ch <= 45; ch++) {
+			TaleOfTwoCitiesExtractor extractor = new TaleOfTwoCitiesExtractor(ch);
+			currentChMax = 0;
+			while(extractor.hasNext()){
+				extractor.next();
+				currentChMax++;
+			}
+			if(currentChMax > max){
+				chapter = ch;
+				max = currentChMax;
+			}
+		}
 		System.out.println(String.format("The chapter with the most number of words is %d with a total of %s", chapter, max));
 	}
 	
@@ -34,14 +49,32 @@ public class Q1 {
 	static void fewestUniqueWords() throws java.io.IOException {
 		int chapter = -1;
 		int minUnique = Integer.MAX_VALUE;
-		
+		WordList uniqueWords;
+		for(int ch = 1; ch <= 45; ch++) {
+			TaleOfTwoCitiesExtractor extractor = new TaleOfTwoCitiesExtractor(ch);
+			uniqueWords = new WordList();
+			while(extractor.hasNext()){
+				uniqueWords.add(extractor.next());
+			}
+			if(uniqueWords.size() < minUnique){
+				chapter = ch;
+				minUnique = uniqueWords.size();
+			}
+		}
 		System.out.println(String.format("The chapter with the fewest number of unique words is %d with a total of %s", chapter, minUnique));
 	}
 	
 	/** Complete this implementation. */
 	static void totalUniqueWords() throws java.io.IOException {
 		int totalUnique = 0;
-		
+		WordList uniqueWords = new WordList();
+		for(int ch = 1; ch <= 45; ch++) {
+			TaleOfTwoCitiesExtractor extractor = new TaleOfTwoCitiesExtractor(ch);
+			while(extractor.hasNext()){
+				uniqueWords.add(extractor.next());
+			}
+		}
+		totalUnique = uniqueWords.size();
 		System.out.println(String.format("There are a total of %d unique words in the book.", totalUnique));
 	}
 	

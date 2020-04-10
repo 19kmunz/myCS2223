@@ -22,7 +22,7 @@ public class WordList {
 
 	private Node first = null;
 	private Node last = null;
-	int size = 0;
+	private int size = 0;
 
 	/**
 	 * If the given element doesn't exist in the set then update 

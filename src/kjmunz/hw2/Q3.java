@@ -76,8 +76,7 @@ public class Q3 {
 	 * of how many times Math.power() is called for an initial problem of size n.
 	 */
 	static long model(int n) {
-		// FIX ME
-		return 0;
+		return (long) (Math.pow(2,n) + (Math.log(n)/Math.log(2)) + 1);
 	}
 	
 	/**

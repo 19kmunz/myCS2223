@@ -1,0 +1,50 @@
+<<Your Name Here>>
+HW2
+Written Questions
+
+Q1. No need for separate written questions. Your code should just run
+
+Q2. No need for separate written questions. Your code should just run
+
+Q3.1 [8 pts.] Identify the base case for S() and the recursive case for S(n)
+
+BASE CASE (lo == hi)        2 invocations
+RECURSIVE CASE              1 + S(N/2) + N/2
+
+Q3.2 [12 pts.] Derive an exact solution for S(N) when N is a power of 2. Be sure to show your work.
+
+<< if you think this would be better done with a word document with equations, be sure to include that  >>
+<< with your submission.                                                                                >>
+
+2^n     = N
+n = log2(N)
+S(1)    = 2
+S(N)    = S(N/2) + N/2 + 1
+
+S(N/2)  = S(N/4) + N/4 + 1
+S(N/4)  = S(N/8) + N/8 + 1
+
+S(N)    = S(N/2) + N/2 + 1
+S(N)    = S(N/4) + N/4 + 1 + N/2 + 1        = S(N/4) + N/4 + N/2 + 2        = S(N/4) + 3N/4 + 2
+S(N)    = S(N/8) + N/8 + 1 + N/4 + N/2 + 2  = S(N/8) + N/8 + N/4 + N/2 + 3  = S(N/8) + 7N/8 + 3
+
+S(N)    = S(N/2^n) + ((2^n)-1)N/2^n + n
+S(N)    = S(N/N) + (2^n)N/N + n
+S(N)    = S(1) + (N-1) + log2(N)
+S(N)    = 2 + (N - 1) + log2(N) = N + log2(N) + 1
+
+S(N) =  N + log2(N) + 1
+
+Q4. No need for written question since your code should just run. 
+
+
+BONUS QUESTIONS
+
+3.3 [1 pt.] Can you derive a formula that predicts the Value printed proc(a, 0, a.length-1) when a contains the
+            integers from 0 to n-1 and N is a power of 2.
+    
+4.2 [1 pt.] Derive formula for T(n+1,k) in terms of T(n,k) and n and k?    
+            
+4.3 [1 pt.] Derive formula that computes T(n,2) for any n >= 2
+
+4.4 [1 pt.] Find twin pairs in the right diagonal, as well as the first ten n-1 instances

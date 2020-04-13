@@ -1,8 +1,5 @@
 package kjmunz.hw2;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
 /**
  * For this question, you are to process the book "The Tale of Two Cities" as included in the repository.   
  * 
@@ -101,8 +98,8 @@ public class Q1 {
 			for(int otherChap = 0; otherChap < numberSharedWords.length; otherChap++){
 				if(numberSharedWords[otherChap] > maxShared){
 					maxShared = numberSharedWords[otherChap];
-					chapter1 = currChap;
-					chapter2 = otherChap;
+					chapter1 = currChap+1;
+					chapter2 = otherChap+1;
 				}
 			}
 		}

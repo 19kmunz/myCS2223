@@ -2,6 +2,8 @@ package kjmunz.hw2;
 
 import algs.days.day05.FixedCapacityQueue;
 
+import javax.swing.*;
+
 /**
  * N people go to a Casino and everyone wins a little bit of money. You suggest it would be 
  * better if just one person collected all the winnings and you propose the following strategy.
@@ -31,14 +33,19 @@ import algs.days.day05.FixedCapacityQueue;
 public class Selection {
 	final int N;      /* Number of people. */
 	final int k;      /* Delta to counting. */
+	Node firstPerson;
 	
 	/** Construct an instance of the problem with N people choosing by k. */
 	public Selection(int N, int k) {
 		this.N = N;
 		this.k = k;
-		
-		// Here is where you would construct a Linked List with N nodes
-		// [1] -> [2] -> [3] -> ... -> [n]
+
+		firstPerson = new Node(1);
+		Node currNode = firstPerson;
+		for(int i = 2; i <= N; i++){
+			currNode.next = new Node(i);
+			currNode = currNode.next;
+		}
 	}
 	
 	/** Use this node to form the linked list. */
@@ -58,7 +65,11 @@ public class Selection {
 	 * @param result
 	 */
 	static void output(FixedCapacityQueue<Integer> result) {
-		System.out.println("NOT IMPLEMENTED YET");
+		StringBuilder queueBuild = new StringBuilder();
+		while(!result.isEmpty()){
+			queueBuild.append(result.dequeue()).append(" ");
+		}
+		System.out.println(queueBuild.toString());
 	}
 	
 	/**
@@ -68,7 +79,45 @@ public class Selection {
 	FixedCapacityQueue<Integer> countOff() {
 		FixedCapacityQueue<Integer> result = new FixedCapacityQueue<Integer>(N);
 
-		// YOUR CODE HERE...
+		Node previousNode = null;
+		Node currNode = firstPerson;
+		while(firstPerson.next != null) {
+			for (int i = 1; i < k; i++) {
+				previousNode = currNode;
+				if (currNode.next == null) {
+					currNode = firstPerson;
+				} else {
+					currNode = currNode.next;
+				}
+			}
+			result.enqueue(currNode.person);
+			/*System.out.print("BEFORE: ");
+			Node printingNode = firstPerson;
+			while(printingNode != null){
+				System.out.print(printingNode.person + " ");
+				printingNode = printingNode.next;
+			}
+			System.out.println();*/
+			if(currNode == firstPerson){
+				firstPerson = firstPerson.next;
+			} else {
+				previousNode.next = currNode.next;
+			}
+			if (currNode.next == null) {
+				currNode = firstPerson;
+			} else {
+				currNode = currNode.next;
+			}
+			/*
+			System.out.print("AFTER: ");
+			printingNode = firstPerson;
+			while(printingNode != null){
+				System.out.print(printingNode.person + " ");
+				printingNode = printingNode.next;
+			}
+			System.out.println();*/
+		}
+		result.enqueue(firstPerson.person);
 		
 		return result;
 	}

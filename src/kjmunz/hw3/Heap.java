@@ -15,12 +15,17 @@ import edu.princeton.cs.algs4.StdOut;
  *  @modified George Heineman
  */
 public class Heap {
+	// reset every call to constructHeap (yes these shouldn't be static but it works)
+	public static int lessCount = 0;
+	public static int exchCount = 0;
 	
 	/**
 	  * Rearranges the array in ascending order, using the natural order.
 	  * @param a the array to be sorted
 	  */
 	 public static void constructHeap(Comparable[] a) {
+	 	lessCount = 0;
+	 	exchCount = 0;
 		 int n = a.length;
 		 
 		 // construct heap from the raw array of which we know nothing.
@@ -56,10 +61,12 @@ public class Heap {
 	  * Indices are "off-by-one" to support 1-based indexing.
 	  ***************************************************************************/
 	 private static boolean less(Comparable[] pq, int i, int j) {
-		 return pq[i-1].compareTo(pq[j-1]) < 0;
+	 	lessCount++;
+	 	return pq[i-1].compareTo(pq[j-1]) < 0;
 	 }
 
 	 private static void exch(Object[] pq, int i, int j) {
+	 	exchCount++;
 		 Object swap = pq[i-1];
 		 pq[i-1] = pq[j-1];
 		 pq[j-1] = swap;

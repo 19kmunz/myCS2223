@@ -216,10 +216,29 @@ public class AVL {
      * 
      * Returns a edu.princeton.cs.algs4.SeparateChainingHashST object representing the symbol table.
      */
-    public SeparateChainingHashST<Integer,Integer> collect() {
-    	// FIX ME
-    	return null;
-    }
+	public SeparateChainingHashST<Integer,Integer> collect() {
+		SeparateChainingHashST<Integer,Integer> soFar = new SeparateChainingHashST<Integer, Integer>();
+		if(root == null) {
+			soFar.put(0, root.count);
+			if(root.left != null) {
+				soFar = collect(root.left, 1, soFar);
+			}
+			if(root.right != null) {
+				soFar = collect(root.right, 1, soFar);
+			}
+		}
+		return soFar;
+	}
+	private SeparateChainingHashST<Integer,Integer> collect(Node n, int depth, SeparateChainingHashST<Integer,Integer> soFar) {
+		soFar.put(depth, n.count);
+		if(n.left != null){
+			soFar = collect(n.left, depth+1, soFar);
+		}
+		if(n.right != null){
+			soFar = collect(n.right, depth+1, soFar);
+		}
+		return soFar;
+	}
     
     
 }

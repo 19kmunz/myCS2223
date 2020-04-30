@@ -1,5 +1,7 @@
 package kjmunz.hw3;
 
+import kjmunz.hw2.TaleOfTwoCitiesExtractor;
+
 /**
 
 This question explores the different structures that result from using binary search trees and separate
@@ -81,7 +83,16 @@ public class Question2 {
 		// to build up the frequency of each word. When you are done, there should be a total
 		// of 10,650 unique keys in each of these symbol tables, and the Integer counts would be the 
 		// frequency of occurrence.
-		// FILL IN HERE...
+		for(int ch = 1; ch <= 45; ch++) {
+			TaleOfTwoCitiesExtractor extractor = new TaleOfTwoCitiesExtractor(ch);
+			for(String word : extractor){
+				Integer wCount = avl.get(word);
+				int count = (wCount == null) ? 1 : wCount + 1;
+				b.put(word, count);
+				avl.put(word, count);
+				hashST.put(word, count);
+			}
+		}
 		
 		System.out.println("There are " + b.size() + " unique words.");
 		System.out.println("The Height of the BST is " + b.height());
@@ -95,7 +106,23 @@ public class Question2 {
 		System.out.println();
 		
 		// now output a row for each of the #BST, #AVL, #HT
-		
+		System.out.print("#BST   ");
+		for (int n = 1; n <= 30; n++) {
+			System.out.print(String.format("%4d,", n));
+		}
+		System.out.println();
+		System.out.print("#AVL   ");
+		for (int n = 1; n <= 30; n++) {
+			System.out.print(String.format("%4d,", n));
+		}
+		System.out.println();
+		System.out.print("#HT   ");
+		for (int n = 1; n <= 30; n++) {
+			System.out.print(String.format("%4d,", n));
+		}
+		System.out.println();
+
+		// TODO: Avgs
 		System.out.println("AVG. BST Depth: ...");
 		System.out.println("AVG. AVL Depth: ...");
 		System.out.println("AVG. HT Depth: ...");

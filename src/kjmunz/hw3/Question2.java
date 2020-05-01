@@ -1,5 +1,6 @@
 package kjmunz.hw3;
 
+import edu.princeton.cs.algs4.SeparateChainingHashST;
 import kjmunz.hw2.TaleOfTwoCitiesExtractor;
 
 /**
@@ -106,26 +107,46 @@ public class Question2 {
 		System.out.println();
 		
 		// now output a row for each of the #BST, #AVL, #HT
-		System.out.print("#BST   ");
-		for (int n = 1; n <= 30; n++) {
-			System.out.print(String.format("%4d,", n));
+		System.out.print("#BST");
+		SeparateChainingHashST<Integer,Integer> bstCollect = b.collect();
+		printSeparateChainingHashST(bstCollect);
+
+		System.out.print("#AVL");
+		SeparateChainingHashST<Integer,Integer> avlCollect = avl.collect();
+		printSeparateChainingHashST(bstCollect);
+
+		System.out.print("#HT");
+		SeparateChainingHashST<Integer,Integer> hashSTCollect = new SeparateChainingHashST<Integer,Integer>();
+		for(int i = 0; i < hashST.m; i++){
+			int currBucketSize = hashST.st[i].size();
+			for(int j = 0; j<currBucketSize; j++){
+				Integer currCountForDepthJ = hashSTCollect.get(j);
+				hashSTCollect.put(j, (currCountForDepthJ != null) ? currCountForDepthJ+1 : 1);
+			}
 		}
-		System.out.println();
-		System.out.print("#AVL   ");
-		for (int n = 1; n <= 30; n++) {
-			System.out.print(String.format("%4d,", n));
-		}
-		System.out.println();
-		System.out.print("#HT   ");
-		for (int n = 1; n <= 30; n++) {
-			System.out.print(String.format("%4d,", n));
-		}
+		printSeparateChainingHashST(hashSTCollect);
+
 		System.out.println();
 
-		// TODO: Avgs
-		System.out.println("AVG. BST Depth: ...");
-		System.out.println("AVG. AVL Depth: ...");
-		System.out.println("AVG. HT Depth: ...");
-		
+		System.out.println("AVG. BST Depth NumberOfComparisons: " + avgOfSeparateChainingHashST(bstCollect));
+		System.out.println("AVG. AVL Depth NumberOfComparisons: " + avgOfSeparateChainingHashST(avlCollect));
+		System.out.println("AVG. HT Depth NumberOfComparisons: " + avgOfSeparateChainingHashST(hashSTCollect));
+	}
+
+	private static float avgOfSeparateChainingHashST(SeparateChainingHashST<Integer,Integer> collect){
+		int total = 0;
+		int count = 0;
+		for(Integer key : collect.keys()){
+			total += (key+1)*collect.get(key);
+			count += collect.get(key);
+		}
+		return (float) total / count;
+	}
+
+	private static void printSeparateChainingHashST(SeparateChainingHashST<Integer,Integer> collect){
+		for (int n = 1; n < collect.size() + 1; n++) {
+			System.out.print(String.format("%4d,", collect.get(n-1)));
+		}
+		System.out.println();
 	}
 }

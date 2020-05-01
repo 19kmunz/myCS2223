@@ -159,18 +159,13 @@ public class BST {
     public SeparateChainingHashST<Integer,Integer> collect() {
         SeparateChainingHashST<Integer,Integer> soFar = new SeparateChainingHashST<Integer, Integer>();
         if(!isEmpty()) {
-            soFar.put(0, root.count);
-            if(root.left != null) {
-                soFar = collect(root.left, 1, soFar);
-            }
-            if(root.right != null) {
-                soFar = collect(root.right, 1, soFar);
-            }
+            collect(root, 0, soFar);
         }
     	return soFar;
     }
     private SeparateChainingHashST<Integer,Integer> collect(Node n, int depth, SeparateChainingHashST<Integer,Integer> soFar) {
-        soFar.put(depth, n.count);
+        Integer currCount = soFar.get(depth);
+        soFar.put(depth, (currCount != null) ? currCount + 1 : 1);
         if(n.left != null){
             soFar = collect(n.left, depth+1, soFar);
         }
@@ -203,7 +198,9 @@ public class BST {
         if(n.left == null && n.right == null){
             return 0;
         }
-        return Math.max((n.left != null) ? height(n.left) + 1 : 0, (n.right != null) ? height(n.right) + 1 : 0);
+        return Math.max(
+                (n.left != null) ? height(n.left) + 1 : 0,
+                (n.right != null) ? height(n.right) + 1 : 0);
     }
     
     /**

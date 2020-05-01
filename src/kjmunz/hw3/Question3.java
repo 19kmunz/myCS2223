@@ -21,14 +21,20 @@ public class Question3 {
 				bt.put(word, count);
 			}
 		}
-		
-		System.out.println("Top ten most frequent words");
 
-		// TODO
-		
+		String mostFreq = bt.mostFrequent();
+		int mostFreqCount = bt.get(mostFreq);
+		System.out.println("The Top Ten words by frequency are:");
+		for(int i = 1; i <= 10; i++) {
+			System.out.println(String.format("%2d. %s (%d)", i, mostFreq, mostFreqCount));
+			bt.delete(mostFreq);
+			mostFreq = bt.mostFrequent();
+			mostFreqCount = bt.get(mostFreq);
+		}
+
+		System.out.println("\nNumber of words that appear once");
 		int n = bt.printUnique();
 		System.out.println(n + " unique words.");
-		 
 	}
 	
 }

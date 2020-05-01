@@ -184,9 +184,9 @@ public class BST {
      * Returns the height of this binary tree.
      */
 	public int height() {
-		// TODO
-		return -1;
+        return height(root);
 	}
+
 	
     /** 
      * Returns the height of a given node.
@@ -200,8 +200,10 @@ public class BST {
      *          F           -- height of F is 0
      */
     public int height(Node n) {
-    	// TODO
-    	return -1;
+        if(n.left == null && n.right == null){
+            return 0;
+        }
+        return Math.max((n.left != null) ? height(n.left) + 1 : 0, (n.right != null) ? height(n.right) + 1 : 0);
     }
     
     /**
@@ -209,14 +211,40 @@ public class BST {
      * 
      */
     public String mostFrequent() {
-    	// TODO
-    	return null;
+    	return mostFrequent(root, "");
+    }
+    private String mostFrequent(Node node, String currKey){
+        String key = currKey;
+        if(node.left != null){
+            key = mostFrequent(node.left, key);
+        }
+        if (node.right != null) {
+            key = mostFrequent(node.right, key);
+        }
+        boolean keyIsReal = get(key) != null && !key.equals("");
+        boolean keyBigger = get(key) != null && get(key) > get(node.key);
+        if(keyIsReal && keyBigger){
+            return key;
+        }
+        return node.key;
     }
     
     /** Print in ascending order the keys whose count is 1 (that is, only occur once) and return total. */
     public int printUnique() {
-    	// TODO
-    	return -1;
+    	return printUnique(root, 0);
+    }
+    private int printUnique(Node node, int count){
+        if(node.left != null){
+            count = printUnique(node.left, count);
+        }
+        if(node.count == 1){
+            System.out.println(node.key);
+            count++;
+        }
+        if(node.right != null){
+            count = printUnique(node.right, count);
+        }
+        return count;
     }
 
 }

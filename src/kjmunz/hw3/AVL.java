@@ -218,7 +218,7 @@ public class AVL {
      */
 	public SeparateChainingHashST<Integer,Integer> collect() {
 		SeparateChainingHashST<Integer,Integer> soFar = new SeparateChainingHashST<Integer, Integer>();
-		if(root == null) {
+		if(root != null) {
 			soFar.put(0, root.count);
 			if(root.left != null) {
 				soFar = collect(root.left, 1, soFar);

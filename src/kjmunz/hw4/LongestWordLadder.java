@@ -1,7 +1,7 @@
 package kjmunz.hw4;
 
-import edu.princeton.cs.algs4.EdgeWeightedGraph;
-import edu.princeton.cs.algs4.SeparateChainingHashST;
+import algs.hw4.AVL;
+import edu.princeton.cs.algs4.*;
 
 import java.io.File;
 import java.util.Scanner;
@@ -24,11 +24,14 @@ public class LongestWordLadder {
 		// Note: you will have to copy this file into your project to access it, unless you
 		// are already writing your code within the SedgewickAlgorithms4ed project.
 		Scanner sc = new Scanner(new File ("words.english.txt"));
+		int id = 0;
 		while (sc.hasNext()) {
 			String s = sc.next();
 			if (s.length() == 4) {
-
-				// fill in here...
+				avl.insert(s);
+				table.put(s, id);
+				reverse.put(id, s);
+				id++;
 			}
 		}
 		sc.close();
@@ -39,12 +42,29 @@ public class LongestWordLadder {
 		// keys() method provided by the AVL tree to iterate over all keys in the graph
 		
 		EdgeWeightedGraph graph = new EdgeWeightedGraph(table.size());
-
-		// fill in here...
+		String min = avl.min();
+		for (String w1: avl.keys()) {
+			for (String w2: avl.keys(min, w1)) { // will do one more check than necessary...
+				if(WordLadder.offByOne(w1, w2)){
+					graph.addEdge(new Edge(table.get(w1), table.get(w2), 1));
+				}
+			}
+		}
 		
 		double max = 0;
 		int maxu = 0;
 		int maxv = 0;
+		for (String w1: avl.keys()) {
+			DijkstraUndirectedSP dijkstra = new DijkstraUndirectedSP(graph, table.get(w1));
+			for (String w2: avl.keys(min, w1)) {
+				double distance = dijkstra.distTo(table.get(w2));
+				if(distance > max && distance != Double.POSITIVE_INFINITY){
+					max = distance;
+					maxu = table.get(w1);
+					maxv = table.get(w2);
+				}
+			}
+		}
 
 		// Find largest non-infinite distance between any two vertices.
 		

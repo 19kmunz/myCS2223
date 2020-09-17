@@ -5,8 +5,9 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class PietGenerator {
+    // compiler: https://gabriellesc.github.io/piet/
     public static void main(String[] args) throws IOException {
-        String message = "Thank you for being a Great Mom for Another Year <3";
+        String message = "the quick brown fox jumps over the lazy dog";
         int width = (message.length()*6) + 9;
         int height = 26;
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -103,20 +104,4 @@ public class PietGenerator {
         File outputfile = new File("image.png");
         ImageIO.write(image, "png", outputfile);
     }
-    /*
-    * The flame that burns Twice as bright burns half as long.
-    public static void main(String[] args) {
-        String message = "Heineman - Thank you for the best Q Term <3 - Algos 2020";
-        System.out.println(message.length());
-        char currChar;
-        int row;
-        int remainder;
-        for(int i = 0; i <message.length(); i++){
-            currChar = message.charAt(i);
-            row = ((int)currChar / 5) - 1;
-            remainder = currChar - ((row+1)*5);
-            System.out.println(currChar + "\t" + ((int) currChar) + "\t" + row + "\t"  + remainder + "\t");
-        }
-    }
-    * */
 }

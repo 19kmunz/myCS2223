@@ -1,3 +1,5 @@
+package kjmunz.misc;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -47,9 +49,9 @@ public class PietGenerator {
         }
         // Set the dark squares
         int currCornerIndex = 0;
-        int currCharInt = 0;
-        int row = 0;
-        int remainder = 0;
+        int currCharInt;
+        int row;
+        int remainder;
         currColor = -1;
         for(int i = 0; i < message.length(); i++){ // for ever letter in the message
             currColor = ((currColor == 5) ? 0 : (currColor + 1)); // the current color is iterated through
@@ -76,7 +78,6 @@ public class PietGenerator {
         }
         // set little end loop
         currCornerIndex += 6;
-        //image.setRGB(currCornerIndex -1 , 0, lightColors[currColor].getRGB());
         currColor = ((currColor == 5) ? 0 : (currColor + 1));
         int[][] coloredLoop = {
                 {0, currCornerIndex},

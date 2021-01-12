@@ -1,0 +1,26 @@
+
+O	java:S106•"9Replace this use of System.out or System.err by a logger.(œé¼¢
+t	java:S135—"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ
+Z
+java:S2583["DChange this condition so that it does not always evaluate to "false"(Ì§Ï
+o
+java:S2293m"YReplace the type specification in this constructor call with the diamond operator ("<>").(¾Äú¾
+t
+java:S2293-"YReplace the type specification in this constructor call with the diamond operator ("<>").(âÖÏãüÿÿÿÿ
+t
+java:S2293L"YReplace the type specification in this constructor call with the diamond operator ("<>").(›Ñ„ªÿÿÿÿÿ
+m
+java:S3776i"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òá–İıÿÿÿÿ
+T	java:S106¡"9Replace this use of System.out or System.err by a logger.(áÎĞªùÿÿÿÿ
+S	java:S106j"9Replace this use of System.out or System.err by a logger.(‰¸ÒÖüÿÿÿÿ
+h
+java:S3776H"RRefactor this method to reduce its Cognitive Complexity from 35 to the 15 allowed.(ëËĞş
+o
+java:S2293,"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŒÈáò
+J
+java:S2864U"4Iterate over the "entrySet" instead of the "keySet".(Ø·´Î
+t
+java:S2293K"YReplace the type specification in this constructor call with the diamond operator ("<>").(Óàœ£ıÿÿÿÿ
+d
+java:S3008""NRename this field "MAX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—Şîá
+O	java:S106¯"9Replace this use of System.out or System.err by a logger.(²¯Åõ
